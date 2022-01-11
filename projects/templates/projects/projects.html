@@ -4,6 +4,16 @@
 
 <p>Hello, you are on {{ message }} page</p>
 
+{% if number > 10  %}
+    <p>Number is greater than 10</p>
+
+{% elif number == 10 %}
+    <p>Number is exactly 10</p>
+
+{% else %}
+    <p>Number is less than 10</p>
+{% endif %}
+
 <h1>Dev-Portal home page</h1>
 <p>Lorem ipsum dolor sit amet consectetur 
     adipisicing elit. Optio nobis sit reiciendis 
