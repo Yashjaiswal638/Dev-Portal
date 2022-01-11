@@ -14,11 +14,14 @@
     <p>Number is less than 10</p>
 {% endif %}
 
-<h1>Dev-Portal home page</h1>
-<p>Lorem ipsum dolor sit amet consectetur 
-    adipisicing elit. Optio nobis sit reiciendis 
-    tenetur necessitatibus, nulla non cumque rerum 
-    iste, provident saepe similique nemo ad minus 
-    assumenda dolor eveniet accusamus incidunt!</p>
+<h1>Projects</h1>
+
+<ul>
+    {% for project in projects %}
+        <li>Name : <a href="/project/{{project.id}}">{{project.title}}</a> -- {{project.description}}</li><br>
+    {% endfor %}
+</ul>
+
+
 
 {% endblock content %}
