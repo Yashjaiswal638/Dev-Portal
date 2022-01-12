@@ -8,6 +8,9 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     demoLink = models.CharField(max_length=1500, null=True, blank=True)
     sourceLink = models.CharField(max_length=1500, null=True, blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
+    totalVotes = models.IntegerField(default=0, null=True, blank=True)
+    ratioVotes = models.IntegerField(default=0, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
@@ -29,3 +32,12 @@ class Review(models.Model):
 
     def __str__(self):
         return self.value
+
+    
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.name
