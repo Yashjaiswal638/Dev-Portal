@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Project
+from . import models
 
-admin.site.register(Project)
+admin.site.register(models.Project)
+admin.site.register(models.Review)
+admin.site.register(models.Tag)
