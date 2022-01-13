@@ -2,23 +2,11 @@
 
 {% block content %}
 
-<p>Hello, you are on {{ message }} page</p>
-
-{% if number > 10  %}
-    <p>Number is greater than 10</p>
-
-{% elif number == 10 %}
-    <p>Number is exactly 10</p>
-
-{% else %}
-    <p>Number is less than 10</p>
-{% endif %}
-
 <h1>Projects</h1>
 
 <ul>
     {% for project in projects %}
-        <li>Name : <a href="{% url 'project' project.id %}">{{project.title}}</a> -- {{project.description}}</li><br>
+        <li>Name : <a href="{% url 'project' project.id %}">{{project.title}}</a> -- {{project.created}}</li><br>
     {% endfor %}
 </ul>
 

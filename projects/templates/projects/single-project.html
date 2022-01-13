@@ -4,7 +4,12 @@
 
 <h1>{{project.title}}</h1>
 <br>
-<h2>{{project.description}}</h2>
+<h5>{{project.description}}</h5>
+<hr>
+{% for tag in tags %}
+    <span style="border:1px solid rgb(190, 13, 13)">{{tag}}</span>
+{% endfor %}
+<br>
 
 {% endblock content %}
 
