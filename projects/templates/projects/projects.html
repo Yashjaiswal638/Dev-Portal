@@ -38,7 +38,7 @@
                   <p><a class="project__author" href="{% url 'project' project.id %}">By Yash Jaiswal</a></p>
                   <p class="project--rating">
                     <span style="font-weight: bold;">{{project.ratioVotes}}%</span> Positive
-                    Feedback ({{project.totalVotes}} Vote{{project.totalVotes|pluralize:"s"}})
+                    Feedback ({{project.totalVotes}}) Vote{{project.totalVotes|pluralize:"s"}}
                   </p>
                   <div class="project__tags">
                       {% for tag in project.tags.all %}
