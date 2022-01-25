@@ -35,7 +35,7 @@
                 <img class="project__thumbnail" src="{{project.featuredImage.url}}" alt="project thumbnail" />
                 <div class="card__body">
                   <h3 class="project__title">{{project.title}}</h3>
-                  <p><a class="project__author" href="{% url 'project' project.id %}">By {{project.owner.name}}</a></p>
+                  <p><a class="project__author" href="{% url 'userProfile' project.owner.id %}">By {{project.owner.name}}</a></p>
                   <p class="project--rating">
                     <span style="font-weight: bold;">{{project.ratioVotes}}%</span> Positive
                     Feedback ({{project.totalVotes}}) Vote{{project.totalVotes|pluralize:"s"}}
