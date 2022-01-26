@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, autheticate
 from .models import Profile
+from django.contrib.auth.models import User
+
 
 def profiles(request):
     profiles = Profile.objects.all()
@@ -25,6 +28,12 @@ def userProfile(request, pk):
 
 def loginPage(request):
     if request.method == "POST":
-        print(request.POST)
+        username = request.POST["username"]
+        password = request.PSOST["password"]
+
+        try :
+            user = User.objects.get(username=username)
+        except:
+            print("Username does not exist!!")
 
     return render(request, 'users/login_register.html')
