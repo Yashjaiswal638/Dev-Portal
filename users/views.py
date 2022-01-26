@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, autheticate
+from django.contrib.auth import login, authenticate
 from .models import Profile
 from django.contrib.auth.models import User
 
@@ -29,11 +29,20 @@ def userProfile(request, pk):
 def loginPage(request):
     if request.method == "POST":
         username = request.POST["username"]
-        password = request.PSOST["password"]
+        password = request.POST["password"]
 
         try :
             user = User.objects.get(username=username)
         except:
             print("Username does not exist!!")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user) 
+            # sends the session to the browser
+            return redirect('profiles')
+        else :
+            print("Username OR Password is incorrect")
 
     return render(request, 'users/login_register.html')
