@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Profile
 
 def profiles(request):
@@ -21,3 +21,10 @@ def userProfile(request, pk):
         'otherSkills':otherSkills,
     }
     return render(request, 'users/user-profile.html', context)
+
+
+def loginPage(request):
+    if request.method == "POST":
+        print(request.POST)
+
+    return render(request, 'users/login_register.html')
