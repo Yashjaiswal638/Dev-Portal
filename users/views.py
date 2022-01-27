@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 
 
 def profiles(request):
@@ -28,7 +29,8 @@ def userProfile(request, pk):
 
 
 def loginUser(request):
-
+    page = "login"
+    context = {'page':page}
     if request.user.is_authenticated:
         return redirect('profiles')
 
@@ -50,10 +52,28 @@ def loginUser(request):
         else :
             messages.error(request, "Username OR Password is incorrect")
 
-    return render(request, 'users/login_register.html')
+    return render(request, 'users/login_register.html', context)
 
 
 def logoutUser(request):
     logout(request)
     messages.error(request, "User is logged out!!")
     return redirect('login')
+
+
+def registerUser(request):
+    page = "register"
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=false)
+            user.username = user.username.lower()
+            user.save()
+
+    context = {
+        'page':page,
+        'form':form,
+    }
+    return render(request, 'users/login_register.html', context)
