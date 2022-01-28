@@ -3,8 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-
+from .forms import CustomUserCreationForm
 
 def profiles(request):
     profiles = Profile.objects.all()
@@ -63,14 +62,22 @@ def logoutUser(request):
 
 def registerUser(request):
     page = "register"
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=false)
+            user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+
+            messages.success(request, "User account was created")
+            login(request, user)
+            return redirect('profiles')
+
+        else :
+            messages.success(request, "An error has occurred during registration")
+  
 
     context = {
         'page':page,
